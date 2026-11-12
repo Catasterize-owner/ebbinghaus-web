@@ -1,105 +1,105 @@
 {
- "at": "2026-11-12T06:09:32.271Z",
+ "at": "2026-11-12T07:03:57.133Z",
  "results": [
   {
    "name": "01 send, receive quiz, answer, graded",
    "pass": true,
-   "ms": 5848
+   "ms": 5226
   },
   {
    "name": "02 rapid sends while bot is working",
    "pass": true,
-   "ms": 4787
+   "ms": 4847
   },
   {
    "name": "04 scrolled-up reader is not yanked to bottom",
    "pass": true,
-   "ms": 8496
+   "ms": 8468
   },
   {
    "name": "05 reload while streaming resumes without duplicates",
    "pass": true,
-   "ms": 5559
+   "ms": 5022
   },
   {
    "name": "05b reload during thinking keeps correct content",
    "pass": true,
-   "ms": 2533
+   "ms": 2518
   },
   {
    "name": "06 offline queue and reconnect",
    "pass": true,
-   "ms": 3930
+   "ms": 3940
   },
   {
    "name": "06b connection lost mid-stream pauses and resumes",
    "pass": true,
-   "ms": 6878
+   "ms": 6780
   },
   {
    "name": "07 group handoff and bot-to-bot",
    "pass": true,
-   "ms": 8164
+   "ms": 8543
   },
   {
    "name": "08 switching bots keeps other conversation working",
    "pass": true,
-   "ms": 2617
+   "ms": 2615
   },
   {
    "name": "09 dialog escape and focus return",
    "pass": true,
-   "ms": 1411
+   "ms": 1254
   },
   {
    "name": "10 attachment upload",
    "pass": true,
-   "ms": 2708
+   "ms": 2734
   },
   {
    "name": "11 reactions and replies",
    "pass": true,
-   "ms": 3324
+   "ms": 3370
   },
   {
    "name": "12 reload preserves sidebar order, selection, draft, history",
    "pass": true,
-   "ms": 3023
+   "ms": 2961
   },
   {
    "name": "13 failed request and retry",
    "pass": true,
-   "ms": 3726
+   "ms": 3629
   },
   {
    "name": "14 mobile 390x844 layout and long message",
    "pass": true,
-   "ms": 7003
+   "ms": 6941
   },
   {
    "name": "14b tablet 768x1024 layout",
    "pass": true,
-   "ms": 751
+   "ms": 621
   },
   {
    "name": "14c 1280x800 details panel",
    "pass": true,
-   "ms": 598
+   "ms": 753
   },
   {
    "name": "15 reduced motion and keyboard navigation",
    "pass": true,
-   "ms": 516
+   "ms": 572
   },
   {
    "name": "16 create bot and chat",
    "pass": true,
-   "ms": 2814
+   "ms": 2861
   },
   {
    "name": "17 avatar state strip",
    "pass": true,
-   "ms": 959
+   "ms": 801
   }
  ]
 }

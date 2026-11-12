@@ -10,7 +10,7 @@
 - Data boundary: the public repo has 20 original sample questions (`fixtures/`). The private bank is used only via
   `ITEMBANK_DIR` at build time. See README → "Question data".
 - Preview: a private claude.ai artifact built from the **private** bank with
-  `ITEMBANK_DIR=… npm run bank && npm run build && npm run artifact`. Publish `dist-artifact/index.html` plus the
+  `ITEMBANK_DIR=… npm run build && npm run artifact`. Publish `dist-artifact/index.html` plus the
   files in `dist-artifact/files.json`. Never publish that bundle publicly.
 
 ## Ownership / execution record

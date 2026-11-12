@@ -43,3 +43,19 @@ The Settings dialog lost focus and couldn't close with Escape after a toggle (co
 - Visual or motion parity against Grok Bot: **not possible**, because there is no reference (REFERENCE_EVIDENCE.md).
 - Performance profiling (60 fps) was not measured. The animations are transform and filter only.
 - Real backend, multi-device sync, AI replies: not connected.
+
+## Account-transfer verification (2026-11-12, branch `migration/public-baseline`)
+Run on a clean tree (`rm -rf public/bank dist`), sample mode, Node 22, Chromium:
+
+| Command | Result |
+|---|---|
+| `npm run typecheck` | exit 0 |
+| `npm test` | 7/7 passed |
+| `npm run test:boundary` | PASS: a fake private export placed in `public/bank` never reaches `dist/` (both `vite build` and `npm run build`) |
+| `npm run build` | exit 0. `bank-boundary: dist/bank is PUBLIC SAMPLE` (20 items) |
+| `npm run e2e` | 20/20 passed, 0 console errors |
+| Fresh clone in an empty directory: `npm ci && npm run typecheck && npm test && npm run build` | passes; nothing needed from outside the repo |
+
+**New defect found during the handoff (fixed):** a sample `npm run build` after a private `ITEMBANK_DIR` export shipped
+the full private bank (14,620 items), because `public/` is copied verbatim and the old pre-build hook skipped
+regeneration (`--if-missing`). Fix: the `bank-boundary` Vite plugin plus the `test:boundary` regression test.

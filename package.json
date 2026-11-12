@@ -9,15 +9,14 @@
   },
   "scripts": {
     "bank": "node scripts/build-bank.mjs",
-    "predev": "node scripts/build-bank.mjs --if-missing",
     "dev": "vite",
-    "prebuild": "node scripts/build-bank.mjs --if-missing",
     "build": "tsc --noEmit && vite build",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview --port 4173",
     "test": "vitest run",
     "e2e": "node tests/e2e.mjs",
-    "artifact": "node scripts/artifact.mjs"
+    "artifact": "node scripts/artifact.mjs",
+    "test:boundary": "node tests/boundary.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

@@ -12,10 +12,12 @@ what each Bot is doing, 1:1 and group chats, and Bot-to-Bot handoffs.
 ## Requirements
 - Node.js 20 or newer, npm
 
+New contributors and Claude sessions: start with `docs/handoff/ACCOUNT_TRANSFER.md`.
+
 ## Quick start
 ```bash
 npm ci
-npm run dev          # http://localhost:5173 (builds the sample question data on first run)
+npm run dev          # http://localhost:5173 (regenerates the question data from the current environment)
 ```
 
 Production build:
@@ -34,6 +36,8 @@ out of the box. The full question bank is private and is **not** included. Build
 | Public sample (default) | `npm run bank` | `fixtures/sample-items.jsonl` |
 | Private bank | `ITEMBANK_DIR=/path/to/itembank npm run bank` | `items/<SUBJECT>/*.jsonl` in that checkout |
 
+`vite.config.ts` regenerates `public/bank/` from the current environment at every build and dev start, and the
+build fails if a sample build would contain non-sample data (`npm run test:boundary` checks this).
 Never commit `public/bank/`, `dist/` or `dist-artifact/`. A build made with the private bank must not be
 deployed anywhere public without the owner's approval.
 
@@ -41,6 +45,7 @@ deployed anywhere public without the owner's approval.
 ```bash
 npm run typecheck
 npm test                                   # vitest unit tests
+npm run test:boundary                      # sample/private data-boundary regression
 npm run build && npm run preview &         # then, in another shell:
 npm run e2e                                # Playwright browser scenarios → docs/evidence/
 ```

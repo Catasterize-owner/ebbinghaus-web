@@ -1,7 +1,8 @@
 import { createRequire } from 'node:module';
 const { chromium } = createRequire(import.meta.url)(process.env.PW || 'playwright');
 const URL = process.env.URL || 'http://localhost:4173/';
-const out = process.env.OUT || '/tmp/claude-0/shots';
+const out = process.env.OUT || 'test-results/smoke';
+(await import('node:fs')).mkdirSync(out, { recursive: true });
 const b = await chromium.launch();
 const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
 const errs = [];

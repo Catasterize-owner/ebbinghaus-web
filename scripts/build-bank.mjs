@@ -5,15 +5,13 @@
 //   - Private: set ITEMBANK_DIR=/path/to/itembank (a checkout with items/<SUBJECT>/*.jsonl).
 // Output (public/bank/) is gitignored and must never be committed.
 //
-// Usage: node scripts/build-bank.mjs [--if-missing] [out-dir]
+// Usage: node scripts/build-bank.mjs [out-dir]   (vite.config.ts runs this automatically on every build/dev start)
 // Drops private keys (only KEEP fields are exported) and items that need media/passages.
 import fs from 'node:fs';
 import path from 'node:path';
 
 const args = process.argv.slice(2);
-const ifMissing = args.includes('--if-missing');
 const out = args.find((a) => !a.startsWith('--')) || 'public/bank';
-if (ifMissing && fs.existsSync(path.join(out, 'index.json'))) process.exit(0);
 const src = process.env.ITEMBANK_DIR || '';
 const sample = !src;
 if (src && !fs.existsSync(path.join(src, 'items'))) { console.error(`ITEMBANK_DIR=${src} has no items/ directory`); process.exit(1); }
