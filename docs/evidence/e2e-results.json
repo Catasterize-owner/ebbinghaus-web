@@ -1,0 +1,105 @@
+{
+ "at": "2026-11-12T06:09:32.271Z",
+ "results": [
+  {
+   "name": "01 send, receive quiz, answer, graded",
+   "pass": true,
+   "ms": 5848
+  },
+  {
+   "name": "02 rapid sends while bot is working",
+   "pass": true,
+   "ms": 4787
+  },
+  {
+   "name": "04 scrolled-up reader is not yanked to bottom",
+   "pass": true,
+   "ms": 8496
+  },
+  {
+   "name": "05 reload while streaming resumes without duplicates",
+   "pass": true,
+   "ms": 5559
+  },
+  {
+   "name": "05b reload during thinking keeps correct content",
+   "pass": true,
+   "ms": 2533
+  },
+  {
+   "name": "06 offline queue and reconnect",
+   "pass": true,
+   "ms": 3930
+  },
+  {
+   "name": "06b connection lost mid-stream pauses and resumes",
+   "pass": true,
+   "ms": 6878
+  },
+  {
+   "name": "07 group handoff and bot-to-bot",
+   "pass": true,
+   "ms": 8164
+  },
+  {
+   "name": "08 switching bots keeps other conversation working",
+   "pass": true,
+   "ms": 2617
+  },
+  {
+   "name": "09 dialog escape and focus return",
+   "pass": true,
+   "ms": 1411
+  },
+  {
+   "name": "10 attachment upload",
+   "pass": true,
+   "ms": 2708
+  },
+  {
+   "name": "11 reactions and replies",
+   "pass": true,
+   "ms": 3324
+  },
+  {
+   "name": "12 reload preserves sidebar order, selection, draft, history",
+   "pass": true,
+   "ms": 3023
+  },
+  {
+   "name": "13 failed request and retry",
+   "pass": true,
+   "ms": 3726
+  },
+  {
+   "name": "14 mobile 390x844 layout and long message",
+   "pass": true,
+   "ms": 7003
+  },
+  {
+   "name": "14b tablet 768x1024 layout",
+   "pass": true,
+   "ms": 751
+  },
+  {
+   "name": "14c 1280x800 details panel",
+   "pass": true,
+   "ms": 598
+  },
+  {
+   "name": "15 reduced motion and keyboard navigation",
+   "pass": true,
+   "ms": 516
+  },
+  {
+   "name": "16 create bot and chat",
+   "pass": true,
+   "ms": 2814
+  },
+  {
+   "name": "17 avatar state strip",
+   "pass": true,
+   "ms": 959
+  }
+ ]
+}

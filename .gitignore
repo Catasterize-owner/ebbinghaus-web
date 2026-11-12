@@ -1,0 +1,9 @@
+node_modules
+dist
+public/bank
+test-results
+*.log
+dist-artifact
+.env
+.env.*
+.DS_Store

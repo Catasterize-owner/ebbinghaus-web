@@ -1,0 +1,62 @@
+/* Avatar motion primitives. Each state = one loop (or one-shot) on .av-body / .av-eyes.
+   All keyframes start/end at the neutral pose → interrupting a state never snaps.
+   Timings are tuned approximations, not measured Grok Bot values. */
+.avatar { position: relative; display: inline-grid; place-items: center; flex: none; }
+.avatar svg { overflow: visible; display: block; }
+.av-body { transform-box: fill-box; transform-origin: 50% 85%; transition: filter var(--dur-base); }
+.av-eyes { transform-box: fill-box; transform-origin: 50% 50%; transition: transform var(--dur-base) var(--ease-out); }
+.av-blink { transform-box: fill-box; transform-origin: 50% 50%; }
+.av-ring::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid transparent; transition: border-color var(--dur-base); pointer-events: none; }
+
+/* idle: slow breathing + occasional blink */
+.av-idle .av-body { animation: av-breathe 4.2s var(--ease-in-out) infinite; }
+.av-idle .av-blink { animation: av-blink 5.6s infinite; }
+@keyframes av-breathe { 0%, 100% { transform: none; } 50% { transform: scale(1.025, .985); } }
+@keyframes av-blink { 0%, 94%, 100% { transform: none; } 96% { transform: scaleY(.1); } }
+
+/* acknowledging: one quick nod + eyes widen (message received) */
+.av-acknowledging .av-body { animation: av-nod 520ms var(--ease-spring) 1; }
+.av-acknowledging .av-eyes { transform: scale(1.12); }
+@keyframes av-nod { 0% { transform: none; } 35% { transform: translateY(-14%) scale(1.04, .97); } 70% { transform: translateY(3%) scale(.98, 1.03); } 100% { transform: none; } }
+
+/* thinking: eyes glance up-left/up-right, gentle tilt */
+.av-thinking .av-eyes { animation: av-glance 1.8s var(--ease-in-out) infinite; }
+.av-thinking .av-body { animation: av-tilt 1.8s var(--ease-in-out) infinite; }
+@keyframes av-glance { 0%, 100% { transform: none; } 25% { transform: translate(-9%, -10%); } 60% { transform: translate(9%, -10%); } }
+@keyframes av-tilt { 0%, 100% { transform: none; } 30% { transform: rotate(-4deg); } 65% { transform: rotate(4deg); } }
+
+/* working: rhythmic squash & stretch, focused eyes */
+.av-working .av-body { animation: av-work 720ms var(--ease-in-out) infinite; }
+@keyframes av-work { 0%, 100% { transform: none; } 30% { transform: translateY(-8%) scale(.96, 1.05); } 55% { transform: translateY(0) scale(1.06, .93); } 75% { transform: scale(.99, 1.01); } }
+
+/* waiting: slow sway, eyes look toward the user (down) */
+.av-waiting .av-body { animation: av-sway 3s var(--ease-in-out) infinite; }
+.av-waiting .av-eyes { transform: translate(0, 10%); }
+@keyframes av-sway { 0%, 100% { transform: none; } 25% { transform: rotate(-3deg); } 75% { transform: rotate(3deg); } }
+
+/* blocked: desaturated, flat eyes, one shake then still */
+.av-blocked .av-body { filter: saturate(.15) brightness(.8); animation: av-shake 420ms var(--ease-out) 1; }
+.av-blocked.av-ring::after { border-color: var(--warn); }
+@keyframes av-shake { 0%, 100% { transform: none; } 25% { transform: translateX(-7%); } 50% { transform: translateX(6%); } 75% { transform: translateX(-3%); } }
+
+/* completed: spring pop, happy eyes, then the runner settles it to idle */
+.av-completed .av-body { animation: av-pop 620ms var(--ease-spring) 1; }
+.av-completed.av-ring::after { border-color: var(--ok); }
+@keyframes av-pop { 0% { transform: none; } 40% { transform: scale(1.16) translateY(-6%); } 100% { transform: none; } }
+
+/* error: red ring, X eyes, single shake */
+.av-error .av-body { animation: av-shake 420ms var(--ease-out) 1; filter: saturate(.6); }
+.av-error.av-ring::after { border-color: var(--danger); }
+
+/* hover response anywhere an avatar is interactive */
+button:hover > .avatar .av-body, a:hover > .avatar .av-body { transition: transform var(--dur-fast) var(--ease-spring); }
+.sb-row:hover .av-idle .av-eyes { transform: translate(6%, 0); }
+
+/* thinking / waiting dots */
+.av-dots { position: absolute; right: -6px; top: -4px; display: flex; gap: 2px; padding: 2px 4px; border-radius: 8px; background: var(--surface-3); }
+.av-dots i { width: 3px; height: 3px; border-radius: 50%; background: var(--text-2); animation: av-dot 1.2s infinite var(--ease-in-out); }
+.av-dots i:nth-child(2) { animation-delay: .15s; } .av-dots i:nth-child(3) { animation-delay: .3s; }
+@keyframes av-dot { 0%, 60%, 100% { opacity: .35; transform: none; } 30% { opacity: 1; transform: translateY(-1.5px); } }
+.av-waiting .av-dots i { animation-duration: 2.4s; }
+
+/* Reduced motion: the global rule in app.css stops loops; poses (eyes, filters, rings) still show the state. */
